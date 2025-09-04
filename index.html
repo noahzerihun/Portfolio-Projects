@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noah G Zerihun - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background: #000000;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Main View Styles */
+        .main-view {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .finance-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .data-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .section-card h2 {
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Detail View Styles */
+        .detail-view {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
+        }
+
+        .detail-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .detail-header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .detail-header h2 {
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .project {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .finance-project .tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .data-project .tag {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .main-view {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-card {
+                padding: 40px 30px;
+            }
+
+            .detail-header {
+                padding: 30px 20px;
+            }
+
+            .detail-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info {
+                gap: 20px;
+            }
+
+            .contact-item {
+                font-size: 0.9rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Noah G Zerihun</h1>
+            <p class="subtitle">Projects of a Finance & Data Science Enthusiast</p>
+            <div class="contact-info">
+                <a href="mailto:ngzcontact@gmail.com" class="contact-item">
+                    <span>📧</span>
+                    <span>ngzcontact@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/noah-gobezayhu-zerihun/" class="contact-item">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main View - Two Section Cards -->
+        <div class="main-view" id="mainView">
+            <div class="section-card" onclick="showSection('finance')">
+                <div class="section-icon finance-icon">💰</div>
+                <h2>Finance Projects</h2>
+            </div>
+
+            <div class="section-card" onclick="showSection('data')">
+                <div class="section-icon data-icon">📊</div>
+                <h2>Data Science Projects</h2>
+            </div>
+        </div>
+
+        <!-- Finance Detail View -->
+        <div class="detail-view" id="financeDetail">
+            <button class="back-button" onclick="showMain()">
+                <span>←</span>
+                <span>Back to Main</span>
+            </button>
+            
+            <div class="detail-header">
+                <div class="detail-header-content">
+                    <div>
+                        <h2>Finance Projects</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project finance-project" onclick="openProject('finance', 1)">
+                    <div class="project-title">Capital Budgeting & Investment Decision Analysis</div>
+                    <div class="project-description">
+                        Comprehensive financial analysis of Nike Inc.'s capital investment opportunities using NPV, IRR, PI, and DPP methods. Evaluated a $5.08 billion PPE investment with detailed cash flow projections and WACC calculations.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Capital Budgeting</span>
+                        <span class="tag">Financial Modeling</span>
+                        <span class="tag">NPV Analysis</span>
+                        <span class="tag">WACC</span>
+                        <span class="tag">Excel</span>
+                    </div>
+                </div>
+
+                <div class="project finance-project" onclick="openProject('finance', 2)">
+                    <div class="project-title">Forecasted Financial Statements and Comparative Analysis of Apple Inc.</div>
+                    <div class="project-description">
+                        Advanced financial forecasting models using statistical and econometric techniques to predict market trends, revenue projections, and financial performance metrics.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Financial Forecasting</span>
+                        <span class="tag">Time Series</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">Statistical Modeling</span>
+                    </div>
+                </div>
+
+                <div class="project finance-project" onclick="openProject('finance', 3)">
+                    <div class="project-title">Budgeting & Cash Management</div>
+                    <div class="project-description">
+                        Comprehensive budgeting and cash flow management analysis with financial planning models to optimize liquidity and working capital efficiency.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Cash Flow Analysis</span>
+                        <span class="tag">Budgeting</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">Financial Planning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Science Detail View -->
+        <div class="detail-view" id="dataDetail">
+            <button class="back-button" onclick="showMain()">
+                <span>←</span>
+                <span>Back to Main</span>
+            </button>
+            
+            <div class="detail-header">
+                <div class="detail-header-content">
+                    <div>
+                        <h2>Data Science Projects</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project data-project" onclick="openProject('data', 1)">
+                    <div class="project-title">Hypothesis Testing Analysis</div>
+                    <div class="project-description">
+                        Statistical analysis project implementing various hypothesis testing methods to validate data-driven conclusions and assess statistical significance.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Statistics</span>
+                        <span class="tag">Hypothesis Testing</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                </div>
+
+                <div class="project data-project" onclick="openProject('data', 2)">
+                    <div class="project-title">California Housing Price Regression</div>
+                    <div class="project-description">
+                        Machine learning regression analysis to predict California housing prices using demographic and geographic features with advanced statistical modeling techniques.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Regression Analysis</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Housing Data</span>
+                    </div>
+                </div>
+
+                <div class="project data-project" onclick="openProject('data', 3)">
+                    <div class="project-title">Building RAG Chatbots</div>
+                    <div class="project-description">
+                        Developed Retrieval-Augmented Generation chatbots using advanced NLP techniques and vector databases to create intelligent, context-aware conversational AI systems.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">RAG</span>
+                        <span class="tag">LLM</span>
+                        <span class="tag">Vector Databases</span>
+                        <span class="tag">Chatbots</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Noah G Zerihun. Built with passion for data and finance.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(section) {
+            document.getElementById('mainView').style.display = 'none';
+            
+            if (section === 'finance') {
+                document.getElementById('financeDetail').style.display = 'block';
+                document.getElementById('dataDetail').style.display = 'none';
+            } else {
+                document.getElementById('dataDetail').style.display = 'block';
+                document.getElementById('financeDetail').style.display = 'none';
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function showMain() {
+            document.getElementById('financeDetail').style.display = 'none';
+            document.getElementById('dataDetail').style.display = 'none';
+            document.getElementById('mainView').style.display = 'grid';
+            window.scrollTo(0, 0);
+        }
+
+        function openProject(section, id) {
+            const projectUrls = {
+                'finance': {
+                    1: 'https://github.com/noahzerihun/Portfolio-Projects/tree/main/Finance/Capital%20Budgeting%20%26%20Investment%20Decision%20Analysis',
+                    2: 'https://github.com/noahzerihun/Portfolio-Projects/tree/main/Finance/Forecasting%20Models%20for%20Apple%20Inc.',
+                    3: 'https://github.com/noahzerihun/Portfolio-Projects/tree/main/Finance/Budgeting%20%26%20Cash%20Management'
+                },
+                'data': {
+                    1: 'https://github.com/noahzerihun/Portfolio-Projects/tree/main/Data%20Science/Hypothesis%20Testing',
+                    2: 'https://github.com/noahzerihun/Portfolio-Projects/tree/main/Data%20Science/California%20Regression',
+                    3: 'https://github.com/noahzerihun/Portfolio-Projects/tree/main/Data%20Science/Building%20RAG%20Chatbots'
+                }
+            };
+            
+            if (projectUrls[section] && projectUrls[section][id]) {
+                window.open(projectUrls[section][id], '_blank');
+            } else {
+                alert('Project link coming soon!');
+            }
+        }
+
+        // Add smooth hover effects for contact items
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
